@@ -7,7 +7,7 @@ QUnit.test("basket should exist", function( assert ) {
 	}
 });
 
-QUnit.test("When I create new basket then it should be notNull, empty and price should be 0", function( assert ) {
+QUnit.test("new basket whue have correctly initial data", function( assert ) {
 	var newBasket = basket();
 	assert.ok(newBasket);
 	var items = newBasket.getItems();
@@ -17,7 +17,7 @@ QUnit.test("When I create new basket then it should be notNull, empty and price 
 	assert.equal(0, price);
 });
 
-QUnit.test("When I add one product to basket then one product should be in basket and price should be correct", function( assert ) {
+QUnit.test("add one product", function( assert ) {
 	var newBasket = basket();
 	var product = {price : 10};
 	newBasket.add(product);
@@ -25,3 +25,17 @@ QUnit.test("When I add one product to basket then one product should be in baske
 	assert.equal(1, newBasket.getItems().length);
 	assert.equal(10, newBasket.getPrice());
 });
+
+QUnit.test("add two product", function( assert ) {
+	var newBasket = basket();
+	var product1 = {price : 10};
+	var product2 = {price : 5};
+
+	newBasket.add(product1);
+	newBasket.add(product2);
+
+	assert.equal(2, newBasket.getItems().length);
+	assert.equal(15, newBasket.getPrice());
+});
+
+
