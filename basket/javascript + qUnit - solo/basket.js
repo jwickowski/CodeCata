@@ -4,24 +4,27 @@ var basket = (function(){
 			items = {},
 			getItems = function(){
 				var result = [];
-				for(var item in items){
-					var currentItem = items[item];
-					result.push({id: currentItem.id, price: currentItem.price, count: currentItem.count}); 
-				}
+				enumerableInItems(function(item){
+					result.push({id: item.id, price: item.price, count: item.count}); 
+				});
 				return result;
 			},
 			getPrice = function(){
 				var price = 0;
-
+				enumerableInItems(function(item){
+					price += item.price * item.count;
+				});
+				return price;
+			},
+			enumerableInItems = function(func){
 				for(var item in items){
 					var currentItem = items[item];
-					price += currentItem.price * currentItem.count;
+					func(currentItem);
 				}
-				return price;
 			},
 			add = function(item){
 				var currentItem = items[item.id];
-				if(!currentItem){
+				if(!currentItem) {
 					currentItem = {price : item.price, count : 1};
 					items[item.id] = currentItem;
 				} else {
