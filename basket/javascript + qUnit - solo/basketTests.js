@@ -19,23 +19,35 @@ QUnit.test("new basket have correctly initial data", function( assert ) {
 
 QUnit.test("add one product", function( assert ) {
 	var newBasket = basket();
-	var product = {price : 10};
+	var product = {id : 1, price : 10};
 	newBasket.add(product);
 
 	assert.equal(1, newBasket.getItems().length);
 	assert.equal(10, newBasket.getPrice());
 });
 
-QUnit.test("add two product", function( assert ) {
+QUnit.test("add two difference product", function( assert ) {
 	var newBasket = basket();
-	var product1 = {price : 10};
-	var product2 = {price : 5};
+	var product1 = {id: 1, price : 10};
+	var product2 = {id: 2, price : 5};
 
 	newBasket.add(product1);
 	newBasket.add(product2);
 
 	assert.equal(2, newBasket.getItems().length);
 	assert.equal(15, newBasket.getPrice());
+});
+
+QUnit.test("add two the same products", function( assert ) {
+	var newBasket = basket();
+	var product1 = {id: 1, price : 10};
+	var product2 = {id: 1, price : 10};
+
+	newBasket.add(product1);
+	newBasket.add(product2);
+
+	assert.equal(1, newBasket.getItems().length);
+	assert.equal(20, newBasket.getPrice());
 });
 
 
