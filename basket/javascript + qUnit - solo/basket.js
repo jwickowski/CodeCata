@@ -22,10 +22,13 @@ var basket = (function(){
 					func(currentItem);
 				}
 			},
-			add = function(item){
+			add = function(item, count){
+				if(!count){
+					count  =1;
+				}
 				var currentItem = items[item.id];
 				if(!currentItem) {
-					currentItem = {price : item.price, count : 1};
+					currentItem = {price : item.price, count : count};
 					items[item.id] = currentItem;
 				} else {
 					if(currentItem.price !== item.price){
@@ -36,6 +39,9 @@ var basket = (function(){
 			},
 			remove = function(id){
 				var currentItem = items[id];
+				if(!currentItem){
+					throw "The items with id does not exist.";
+				}
 				currentItem.count--;
 				if(currentItem.count === 0){
 					delete items[id];

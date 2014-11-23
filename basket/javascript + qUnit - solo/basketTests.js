@@ -50,6 +50,16 @@ QUnit.test("add two the same products", function( assert ) {
 	assert.equal(20, newBasket.getPrice());
 });
 
+QUnit.test("add two the same products in one method", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product, 2);
+
+	assert.equal(1, newBasket.getItems().length);
+	assert.equal(20, newBasket.getPrice());
+});
+
 QUnit.test("add the same product with diferent price", function( assert ) {
 	var newBasket = basket();
 	var product1 = {id: 1, price : 10};
@@ -79,5 +89,14 @@ QUnit.test("remove one item when one is in bask", function( assert ) {
 	newBasket.remove(1);
 	assert.equal(0, newBasket.getItems().length);
 });
+
+QUnit.test("remove items which not exists", function( assert ) {
+	var newBasket = basket();
+	
+	assert.throws(function(){
+		newBasket.remove(1);
+	});
+});
+
 
 
