@@ -120,5 +120,14 @@ QUnit.test("remove items which not exists", function( assert ) {
 	});
 });
 
+QUnit.test("removing items when count is greathen then it is", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product,2);
+	newBasket.remove(1,3);
+	assert.equal(0, newBasket.getItems().length);
+});
+
 
 

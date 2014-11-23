@@ -46,7 +46,7 @@ var basket = (function(){
 					throw "The items with id does not exist.";
 				}
 				currentItem.count -= count;
-				if(currentItem.count === 0){
+				if(currentItem.count <= 0){
 					delete items[id];
 				}
 			},
