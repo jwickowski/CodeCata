@@ -30,12 +30,19 @@ var basket = (function(){
 					}
 					currentItem.count++;	
 				}
-				
+			},
+			remove = function(id){
+				var currentItem = items[id];
+				currentItem.count--;
+				if(currentItem.count === 0){
+					delete items[id];
+				}
 			},
 		 	self = {
 				getItems : getItems,
 				getPrice : getPrice,
-				add: add
+				add: add,
+				remove: remove
 			};
 		return self;
 	};

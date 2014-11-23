@@ -61,4 +61,23 @@ QUnit.test("add the same product with diferent price", function( assert ) {
 	});
 });
 
+QUnit.test("remove one item when one is in bask", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product);
+	newBasket.add(product);
+	newBasket.remove(1);
+	assert.equal(1, newBasket.getItems().length);
+});
+
+QUnit.test("remove one item when one is in bask", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product);
+	newBasket.remove(1);
+	assert.equal(0, newBasket.getItems().length);
+});
+
 
