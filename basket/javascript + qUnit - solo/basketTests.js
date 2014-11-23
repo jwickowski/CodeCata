@@ -56,8 +56,10 @@ QUnit.test("add two the same products in one method", function( assert ) {
 
 	newBasket.add(product, 2);
 
-	assert.equal(1, newBasket.getItems().length);
+	var items = newBasket.getItems();
+	assert.equal(1, items.length);
 	assert.equal(20, newBasket.getPrice());
+	assert.equal(2, items[0].count);
 });
 
 QUnit.test("add the same product with diferent price", function( assert ) {
@@ -71,7 +73,7 @@ QUnit.test("add the same product with diferent price", function( assert ) {
 	});
 });
 
-QUnit.test("remove one item when one is in bask", function( assert ) {
+QUnit.test("remove one item when tow are in basket", function( assert ) {
 	var newBasket = basket();
 	var product = {id: 1, price : 10};
 
@@ -81,7 +83,7 @@ QUnit.test("remove one item when one is in bask", function( assert ) {
 	assert.equal(1, newBasket.getItems().length);
 });
 
-QUnit.test("remove one item when one is in bask", function( assert ) {
+QUnit.test("remove one item when one is in basket", function( assert ) {
 	var newBasket = basket();
 	var product = {id: 1, price : 10};
 
@@ -89,6 +91,26 @@ QUnit.test("remove one item when one is in bask", function( assert ) {
 	newBasket.remove(1);
 	assert.equal(0, newBasket.getItems().length);
 });
+
+QUnit.test("remove two items when two in one method", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product,2 );
+	newBasket.remove(1,2 );
+	assert.equal(0, newBasket.getItems().length);
+});
+
+
+QUnit.test("remove multiple item", function( assert ) {
+	var newBasket = basket();
+	var product = {id: 1, price : 10};
+
+	newBasket.add(product);
+	newBasket.remove(1);
+	assert.equal(0, newBasket.getItems().length);
+});
+
 
 QUnit.test("remove items which not exists", function( assert ) {
 	var newBasket = basket();

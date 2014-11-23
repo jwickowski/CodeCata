@@ -37,12 +37,15 @@ var basket = (function(){
 					currentItem.count++;	
 				}
 			},
-			remove = function(id){
+			remove = function(id, count){
+				if(!count){
+					count = 1;
+				}
 				var currentItem = items[id];
 				if(!currentItem){
 					throw "The items with id does not exist.";
 				}
-				currentItem.count--;
+				currentItem.count -= count;
 				if(currentItem.count === 0){
 					delete items[id];
 				}
