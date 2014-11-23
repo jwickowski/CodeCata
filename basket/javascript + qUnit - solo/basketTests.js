@@ -7,7 +7,7 @@ QUnit.test("basket should exist", function( assert ) {
 	}
 });
 
-QUnit.test("new basket whue have correctly initial data", function( assert ) {
+QUnit.test("new basket have correctly initial data", function( assert ) {
 	var newBasket = basket();
 	assert.ok(newBasket);
 	var items = newBasket.getItems();
