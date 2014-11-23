@@ -25,6 +25,9 @@ var basket = (function(){
 					currentItem = {price : item.price, count : 1};
 					items[item.id] = currentItem;
 				} else {
+					if(currentItem.price !== item.price){
+						throw "You can't add items with the same id and different price.";
+					}
 					currentItem.count++;	
 				}
 				

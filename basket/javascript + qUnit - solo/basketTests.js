@@ -50,4 +50,15 @@ QUnit.test("add two the same products", function( assert ) {
 	assert.equal(20, newBasket.getPrice());
 });
 
+QUnit.test("add the same product with diferent price", function( assert ) {
+	var newBasket = basket();
+	var product1 = {id: 1, price : 10};
+	var product2 = {id: 1, price : 99};
+
+	newBasket.add(product1);
+	assert.throws(function(){
+		newBasket.add(product2);	
+	});
+});
+
 
