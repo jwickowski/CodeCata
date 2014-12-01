@@ -2,6 +2,8 @@ var basket = (function(){
 	return function(){
 		var 
 			items = {},
+			inserter = basketInserter(items);
+			remover = basketRemover(items);
 			getItems = function(){
 				var result = [];
 				enumerableInItems(function(item){
@@ -23,34 +25,14 @@ var basket = (function(){
 				}
 			},
 			add = function(item, count){
-				if(!count){
-					count  = 1;
-				}
-				var currentItem = items[item.id];
-				if(!currentItem) {
-					currentItem = {price : item.price, count : count};
-					items[item.id] = currentItem;
-				} else {
-					if(currentItem.price !== item.price){
-						throw "You can't add items with the same id and different price.";
-					}
-					currentItem.count++;	
-				}
+				inserter.insert(item, count);
 			},
 			remove = function(id, count){
-				if(!count){
-					count = 1;
-				}
-				var currentItem = items[id];
-				if(!currentItem){
-					throw "The items with id does not exist.";
-				}
-				currentItem.count -= count;
-				if(currentItem.count <= 0){
-					delete items[id];
-				}
-			},
-		 	self = {
+				remover.remove(id, count);
+			
+			};
+
+		 	var self = {
 				getItems : getItems,
 				getPrice : getPrice,
 				add: add,
