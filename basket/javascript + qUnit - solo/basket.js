@@ -17,14 +17,14 @@ var basket = (function(){
 				return price;
 			},
 			enumerableInItems = function(func){
-				for(var item in items){
-					var currentItem = items[item];
+				for(var key in items){
+					var currentItem = items[key];
 					func(currentItem);
 				}
 			},
 			add = function(item, count){
 				if(!count){
-					count  =1;
+					count  = 1;
 				}
 				var currentItem = items[item.id];
 				if(!currentItem) {
