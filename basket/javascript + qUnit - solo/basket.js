@@ -23,20 +23,13 @@ var basket = (function(){
 					var currentItem = items[key];
 					func(currentItem);
 				}
-			},
-			add = function(item, count){
-				inserter.insert(item, count);
-			},
-			remove = function(id, count){
-				remover.remove(id, count);
-			
 			};
 
 		 	var self = {
 				getItems : getItems,
 				getPrice : getPrice,
-				add: add,
-				remove: remove
+				add: inserter.insert,
+				remove: remover.remove
 			};
 		return self;
 	};
