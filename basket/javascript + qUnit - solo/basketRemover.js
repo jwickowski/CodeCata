@@ -1,4 +1,4 @@
-basketRemover = (function(){
+var basketRemover = (function(){
 	return function(basketItems) {
 		var 
 			remove = function(id, count){

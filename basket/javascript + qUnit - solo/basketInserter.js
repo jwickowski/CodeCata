@@ -1,4 +1,4 @@
-basketInserter = (function(){
+var basketInserter = (function(){
 	return function(basketItems) {
 		var 
 			insert = function(item, count){
